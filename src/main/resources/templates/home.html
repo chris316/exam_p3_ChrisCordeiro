@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h1>Home Page</h1>
+
+<nav class="nav flex-column">
+    <a class="nav-link" th:href="@{/public}">Go to Public page</a>
+    <a class="nav-link" th:href="@{/anonymous}">Go to Anonymous page</a>
+    <a class="nav-link" th:href="@{/admin}">Go to Admin page</a>
+    <a class="nav-link" th:href="@{/cats}">Go to Cats page</a>
+    <a class="nav-link" th:href="@{/dogs}">Go to Dogs page</a>
+</nav>
+
+<div sec:authorize="isAuthenticated()">
+    Logged user:<span sec:authentication="name"></span>
+    <br/>
+    Authorities: <span sec:authentication="principal.authorities"></span>
+    <br/>
+     <form th:action="@{/logout}" method="post">
+         <input type="submit" value="Sign Out"/>
+     </form>
+</div>
+</body>
+</html>
